@@ -1,0 +1,32 @@
+from rich.console import Console
+from rich.panel import Panel
+import datetime
+import os
+
+console = Console()
+
+def speak(text):
+    os.system(f'espeak "{text}"')
+
+console.print(Panel("JARVIS AI SYSTEM", style="cyan"))
+
+speak("Hello Ajinkya. Jarvis online.")
+
+while True:
+    command = input("You: ").lower()
+
+    if "time" in command:
+        t = datetime.datetime.now().strftime("%H:%M:%S")
+        console.print(f"[cyan]Time:[/cyan] {t}")
+        speak(t)
+
+    elif "hello" in command:
+        console.print("[green]Hello Ajinkya![/green]")
+        speak("Hello Ajinkya")
+
+    elif "exit" in command:
+        speak("Shutting down")
+        break
+
+    else:
+        console.print("[red]Unknown command[/red]")
